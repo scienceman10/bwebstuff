@@ -6,7 +6,6 @@ const handlebars = require('express-handlebars').create({defaultLayout:"main"});
 app.engine("handlebars", handlebars.engine);
 app.set("view engine", "handlebars");
 app.use(require("body-parser").urlencoded({extended:true}));
-const formidable = require('formidable');
 const credentials = require('./credentials');
 app.use(require("cookie-parser")(credentials.cookiePass));
 const fs = require('fs');
