@@ -1,0 +1,22 @@
+<div class="page-header">
+  <h1>the public files</h1>
+  <p></p><br/>
+</div>
+<h2><a href="/file">create a file</a></h2>
+<h2><u>read a file</u></h2>
+<form role="form" action="/writefile?file=file" method="GET">
+  <div class="form-group">
+    <label for="file" class="col-sm-2 control-label">
+    enter file to read:</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="file"
+      name="file">
+    </div>
+  </div><br/><br/><br/>
+
+  <div class="form-group">
+    <div class="col-sm-4">
+      <button type="submit" class="btn btn-default">read</button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,29 @@
+<div class="page-header">
+  <h1>the public files</h1>
+  <p>if you create a file, make sure you remember the name, you will have to know the name to be able to read the file.</p><br/>
+</div>
+<h2><a href="/readfile">read a file</a></h2>
+<h2><u>create a file</u></h2>
+<form role="form" action="/file?form=file" method="POST">
+  <div class="form-group">
+    <label for="fname" class="col-sm-2 control-label">
+    File name:</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="fname"
+      name="fname">
+    </div>
+  </div><br/><br/><br/>
+  <div class="form-group">
+    <label for="file" class="col-sm-2 control-label">
+    What is in the file:</label>
+    <div class="col-sm-4">
+      <textarea class="form-control" id="file" rows="10"
+      name="file"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-4">
+      <button type="submit" class="btn btn-default">publish</button>
+    </div>
+  </div>
+</form>

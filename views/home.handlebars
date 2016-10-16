@@ -1,0 +1,160 @@
+<div class="page-header">
+  {{# if name}} <h4>{{name}}</h4><br/><a href="/forget">forget me</a> {{ else }} <a href="/remember">remember me</a> {{/if}}
+  <h1>My Website</h1>
+  <h2>welcome</h2>
+</div>
+<p>welcome to my website! this is my new website ! if you want my site to remember that you've came
+ here before, you can click on the remember me button at the top of this page! you can also visit the <a href="/readfile">public text pages</a>, where you can create a page of random(or not random) text!</p>
+ <h2>Bee Game:</h2>
+ <html>
+<head>
+    <style>
+        #c {background:url("https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Solid_green.svg/2000px-Solid_green.svg.png"); }
+    </style>
+</head>
+<body onkeydown = "if (event.keyCode == 38) game();
+                   if (event.keyCode == 37) Bmove('left');
+                   if (event.keyCode == 39) Bmove('right');
+                   if (event.keyCode == 13) location.reload();
+                   " onload = "gameSE('start');">
+<p>this game is beta<br/>up = start/speed up, enter = replay. use left/right to move the yellow dot to go over as many dots as you can</p>
+
+<canvas id="c" width="400" height="400"></canvas>
+</body>
+<script>
+var rawC = document.getElementById("c");
+var c = rawC.getContext("2d");
+
+var hscore = 0;
+var color = "";
+var oldColor = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
+var a = 0;
+var p = document.getElementById("p");
+var z = document.createTextNode("press up to start");
+var Bx = 200;
+var By = 200;
+var score = 0;
+var RN = 0;
+var RN2 = 0;
+var ychange = 5;
+var y = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var x = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var n = 4;
+var textColor = "#0000A0";
+/*function draw() {
+    c.clearRect(0, 0, c.width, c.height);
+    c.beginPath();
+    c.arc(50, 50, 10, 0, Math.PI*2);
+    c.fillStyle = "#0095DD";
+    c.fill();
+    c.closePath();
+
+}
+setInterval(draw, 70);*/
+function gameSE(SE) {
+    var SE = SE;
+    if (SE == "start") {
+    c.fillStyle = textColor;
+    c.font = "25px Arial";
+    c.fillText("press up to start", 200, 200);
+    } else if (SE == "time") {
+        var oldHighScore = getCookie("high Score");
+        if (oldHighScore != "") {
+            console.log("bhc");
+            if (score > oldHighScore) {
+                document.cookie = "high Score=" + score + "; expires=Thu, 01 Dec 2020 12:00:00 UTC;";
+                hscore = score;
+
+            } else {
+                hscore = oldHighScore;
+
+            }
+        } else {
+            document.cookie = "high Score=" + score + "; expires=Thu, 01 Dec 2020 12:00:00 UTC;";
+            hscore = score;
+        }
+        c.font = "20px Arial";
+        c.fillStyle = textColor;
+        c.fillText("TIME UP!", 100, 100);
+        c.fillText("score:" + score, 100, 150);
+        c.fillText("high score:" + hscore, 100, 175);
+        console.log(oldHighScore);
+        console.log(hscore);
+
+    }
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length,c.length);
+            }
+        }
+        return "";
+    }
+}
+
+function drawBee() {
+    c.beginPath();
+    c.arc(Bx, By, 25, 0, Math.PI*2)
+    c.fillStyle = "#FFFF00"
+    c.fill();
+    c.closePath();
+
+    return;
+}
+function Bmove(key) {
+    var key = key;
+    if (key == "left") {Bx = Bx - 40}
+    if (key == "right") {Bx = Bx + 40}
+    drawBee();
+    return;
+
+}
+function game() {
+    //redraw the old bees in their new positions:
+    function reDraw() {
+        c.clearRect(0, 0, rawC.width, rawC.height);
+        drawBee();
+        n == 4? draw(): n = n;
+        for (i = 0; i < a; i++) {if (x[i] == Bx && y[i] == By) {score++;}
+
+        }
+
+        for (i = 0; i < a; i++) {
+            y[i] = y[i] + ychange;
+            c.beginPath();
+            c.arc(x[i], y[i], 10, 0, Math.PI*2);
+            c.fillStyle = oldColor[i];
+            c.fill();
+            c.closePath();
+        }
+
+        a > 275? gameSE("time"): n++;
+        c.fillStyle = textColor;
+        c.font = "20px Arial";
+        c.fillText(score, 20, 20);
+    }
+    setInterval(reDraw, 40);
+    //draw a new bee:
+    function draw() {
+        RN==0? color = "#FF0000": color = "#800080";
+        RN = Math.round(Math.random());
+        RN2 = Math.floor((Math.random() * 10) + 1) * 40;
+        c.beginPath();
+        c.arc(RN2, y[a], 10, 0, Math.PI*2);
+        c.fillStyle = color
+        c.fill();
+        c.closePath();
+        x[a] = RN2; oldColor[a] = color;
+        a++
+        n = 0;
+        return;
+    }
+}
+
+</script>

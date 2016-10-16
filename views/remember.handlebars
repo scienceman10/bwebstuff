@@ -1,0 +1,19 @@
+<div class="page-header">
+  <h1>get a cookie that remembers you</h1>
+  <p>just enter your name(or a made-up one) and every time you come to this site, it will welcome you back!</p><br/>
+</div>
+<form role="form" action="/remember?form=getcookie" method="POST">
+  <div class="form-group">
+    <label for="Name" class="col-sm-2 control-label">
+    name</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="name"
+      name="name">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-4">
+      <button type="submit" class="btn btn-default">Remember</button>
+    </div>
+  </div>
+</form>
